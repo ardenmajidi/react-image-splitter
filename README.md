@@ -1,46 +1,186 @@
-# Getting Started with Create React App
+# React image splitter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Image Splitter is a versatile and user-friendly React component that enables users to interactively split an image into two parts by dragging a separator divider. This component offers a straightforward and highly customizable solution to create engaging split-screen effects for a variety of applications. It is especially useful in scenarios where you want to showcase the results of changes made to the same background, such as before and after image comparisons, displaying different color schemes or finishes on the same pattern, and more.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- Draggable Separator: Users can easily drag the separator divider left or right to adjust the split position.
 
-### `npm start`
+- Customizable Starting Position: The component allows you to define a default starting position for the separator, providing a balanced split view by default.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Effortless Integration: With simple integration into your React applications, you can utilize this component to add a dynamic and interactive split-screen feature.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Ideal for Before and After Galleries: React Image Splitter is a perfect fit for showcasing "before and after" images, making it easy for users to compare changes side by side.
 
-### `npm test`
+- Flexible Applications: Use this component in various contexts, including presenting different design options, color schemes, or finishes on the same pattern.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+You can install the package using npm:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install react-image-splitter
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![alt React image splitter](https://react-image-splitter.netlify.app/splitter/demo.jpg)
 
-### `npm run eject`
+[Demo](https://react-image-splitter.netlify.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Usage
+Using React Image Splitter in your React application is a breeze. Import the component and provide the required source and content props to display the image and its split version, respectively.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Props
+The React Image Splitter component accepts the following props:
 
-## Learn More
+source: The content to be displayed on one side of the splitter (e.g., the "before" image).
+content: The content to be displayed on the other side of the splitter (e.g., the "after" image).
+startPosition (optional): The initial position of the separator (a number between 0 and 100, where 0 represents fully left and 100 fully right). Default is set to 50.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default App;
+```js
+import React from 'react';
+import ImageSplitter from 'react-image-splitter';
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const App = () => {
+  return (
+    <ImageSplitter
+      source={<img src="/path/to/image.jpg" alt="Source" />}
+      content={<img src="/path/to/image.jpg" alt="Content" />}
+      startPosition={70}
+    />
+  );
+};
+
+export default App;
+
+```
+
+
+## Props
+
+```txt
+The React Image Splitter component accepts the following props:
+
+source: The content to be displayed on one side of the splitter (e.g., the "before" image).
+content: The content to be displayed on the other side of the splitter (e.g., the "after" image).
+startPosition (optional): The initial position of the separator (a number between 0 and 100, where 0 represents fully left and 100 fully right). Default is set to 50.
+
+```
+
+
+#### Sample style
+
+```css
+.content-splitter *
+{
+    box-sizing: border-box;
+    user-select: none;
+
+}
+.content-splitter
+{
+    width:1200px;
+    max-width:100%;
+    margin: auto;
+    position: relative;
+}
+.content-splitter-main
+{
+    position: relative;
+    z-index: 1;
+}
+.content-splitter img{
+    width: 100%;
+    display: block;
+
+
+}
+.content-splitter-layer{
+
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+}
+.content-splitter-layer img{
+    position: absolute;
+    height: 100%;
+    width: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+
+}
+.splitter-divider
+{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
+    width: 3px;
+    transform: translateX(-50%);
+    display: block;
+    z-index: 3;
+}
+.splitter-divider span{
+    display: block;
+    width:50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+
+
+.splitter-divider span::before
+{
+    
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    left: 12px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 10px solid #000;
+    border-bottom: 5px solid transparent;
+}
+
+
+.splitter-divider span::after
+{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #000;
+    border-bottom: 5px solid transparent;
+}
+
+
+
+
+
+
+## License
+This project is licensed under the MIT License.
+
+
