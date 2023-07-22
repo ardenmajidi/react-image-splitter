@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import {ImageSplitter} from './ImageSpliter'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ImageSplitter
+ source={<img src="https://cdn.pixabay.com/photo/2016/10/14/22/52/tiger-1741443_1280.jpg" />}
+ content={<img src="https://cdn.pixabay.com/photo/2016/10/14/22/52/tiger-1741443_1280.jpg" style={{filter:'grayscale(100%)'}}/>}
+  startPosition={30}
+ />
+    
     </div>
   );
 }
